@@ -1,0 +1,161 @@
+/* generic  */
+
+body {
+    color: #E9E5E3;
+    font-family: 'Droid Sans',Tahoma,Arial,Verdana sans-serif;
+    font-size: 16px;
+    background: #3F3F3F;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+	display: block 
+	}
+
+.star {
+    font-family: 'Questrial', Verdana, sans-serif;
+    text-align: center;
+    font-size: 40px;
+    padding: 0;
+    margin: 0 0 20px 0;
+    position: relative;
+    color: #8C8C8C;
+}
+
+/* * have a nice ampersand *
+   ================================================== */
+
+.star:after {
+    font-size: 25px;
+/*     color: #D6CFCB; */
+    color:#FFD700;
+    content: '★ ★ ★ ★ ★';
+    text-align: center;
+    display: block;
+    width: 100%;
+    font-family: 'Alice', Verdana, serif;
+    text-shadow: 0px 1px 0px #fff;
+}
+
+/* * create the gradient bottom *
+   ================================================== */
+
+h1:before {
+    position: absolute;
+    bottom: 15px;
+    content: ' ';
+    text-align: center;
+    display: block;
+    height: 2px;
+    width: 100%;
+
+}
+
+/* ===[ Here comes to good stuff : content styling ]=== */
+#content {
+	min-width: 500px;
+    max-width: auto; 
+    position: relative;
+    padding: 25px;
+    margin: 10px auto;
+    min-height: 200px;
+    z-index: 100;
+    border: 2px solid #202020;
+
+    box-shadow: 0px 1px 6px #3F3F3F;
+    background: #cfcaca; 
+    border-radius: 8px;
+}
+
+/* * my "fake" background that will hover the stripes *
+   ================================================== */
+
+.colorizer {
+	background: #E9E5E3;
+}
+#content:after {
+    background: #363636;
+    margin: 5px;
+    position: absolute;
+    content : " ";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border: 1px #E5E5E5 solid;
+    border-radius: 8px;
+}
+an
+
+.iconic:before {
+    font-size: 25px;
+    font-family: "IconicStroke";
+}
+
+.iconic.question:before { content: "?" }
+.iconic.dot:before { content: "★" }
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.banner {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
