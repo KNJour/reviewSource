@@ -82,20 +82,6 @@
 	</div>
 
 </div> --%>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#">Navbar</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    	<span class="navbar-toggler-icon"></span>
-  		</button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
 <!-- NAV START -->
 <nav class="navbar navbar-expand-md navStyle ">
         <a class="navbar-brand" href="/home">review<span class="source">Source</span></a>
@@ -156,22 +142,111 @@
         <a href="/logout">Log Out</a>
         <div class="container-fluid">
          --%>
-		<div class="container-fluid featured-content" 
-		style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');
-					">
+		<div class="container-fluid featured-content" style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');">
 			<div class="row ">
-					<div class="col-4">
-						<h3 class="mt-5 ml-5">Latest Review</h3>
+					<div class="col-4 featured-box">
+						<h1 class="ml-3 latest-review-title">Latest Review</h1>
+						<h3 class="ml-3"><c:out value="${newest.title }"/></h3>
+						<h5 class="ml-3">By: ${newest.user.userName }</h5>
+						<a class="btn btn-light ml-3 mt-3" href="/reading/${newest.id }"/>Read Now</a>
 					</div>
-					<div class="col-6">
+					<div class="col-4 featured-box">
+						<img src="${newest.image }" class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+
+					</div>
+					<div class="col-4 featured-box">
+						<p class="mb-4">${newest.description }</p>
 					</div>
 			</div>
 		</div>
-		<div class="container-fluid carouselSpace">
-		
+		<!-- TRENDING -->
+		<div class="container-fluid reviews-container">
+			<div class="row">
+				<h1 class="review-list-title">TRENDING REVIEWS</h1>
+			</div>
+				<div class=" row review-list-wrapper">
+						<div class="review-list">
+						<c:forEach items="${allReviews}" var="review">
+							<div class="review-list-item">
+								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
+								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
+								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
+								</div>
+							
+						</c:forEach>
+						</div>
+						<i class="fas fa-chevron-right arrow"></i>
+				</div>
 		</div>
-	
-	
+		<!-- RECENT -->
+				<div class="container-fluid reviews-container">
+			<div class="row">
+				<h1 class="review-list-title">RECENT REVIEWS</h1>
+			</div>
+				<div class=" row review-list-wrapper">
+						<div class="review-list">
+						<c:forEach items="${allReviews}" var="review">
+							<div class="review-list-item">
+								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
+								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
+								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
+								</div>
+							
+						</c:forEach>
+						</div>
+						<i class="fas fa-chevron-right arrow"></i>
+				</div>
+		</div>
+			<div class="container-fluid reviews-container">
+			<div class="row">
+				<h1 class="review-list-title">TRENDING REVIEWS</h1>
+			</div>
+				<div class=" row review-list-wrapper">
+						<div class="review-list">
+						<c:forEach items="${allReviews}" var="review">
+							<div class="review-list-item">
+								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
+								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
+								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
+								</div>
+							
+						</c:forEach>
+						</div>
+						<i class="fas fa-chevron-right arrow"></i>
+				</div>
+		</div>
+			<div class="container-fluid featured-content-bottom" style="background:  linear-gradient(to top, gold, #181818), url('images/gold.png');">
+			<div class="row ">
+					<div class="col-4 featured-box">
+						<h1 class="ml-3 random-review-title">Random Review</h1>
+						<h3 class="ml-3"><c:out value="${random.title }"/></h3>
+						<h5 class="ml-3">By: ${random.user.userName }</h5>
+						<a class="btn btn-light ml-3 mt-3" href="/reading/${random.id }"/>Read Now</a>
+					</div>
+					<div class="col-4 featured-box">
+						<img src="${random.image }" class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+
+					</div>
+					<div class="col-4 featured-box">
+						<p class="mb-4">${random.description }</p>
+					</div>
+			</div>
+		</div>
+	<div class="footer">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  		<a class="navbar-brand" href="#">A Project by Keith Journell</a>
+
+      <a href="https://github.com/knjour" target="_blank"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">GitHub</button></a>
+        <a href="#" target="_blank"><button class="btn btn-outline-primary my-2 my-sm-0 ml-3" type="submit">Portfolio</button></a>
+      
+</nav>
+	</div>
 	
       <!--   <div class="carousel">
         	<div class="carouselbox"> REVIEW DATA WILL COME HERE
@@ -216,7 +291,6 @@
                       
         	</div><!--  Row 1 end --> --%>
   
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
- 	<script src="js/script.js"></script> -->
+ 	<script src="js/app.js"></script>
     </body>
 </html>

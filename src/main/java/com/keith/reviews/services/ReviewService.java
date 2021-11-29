@@ -1,10 +1,13 @@
 package com.keith.reviews.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -120,7 +123,25 @@ public class ReviewService {
     public void deleteReview(Long id) {
     	this.reviewRepository.deleteById(id);
     }
+   public Review getNewest() {
+	   Review review = reviewRepository.findTopByOrderByIdDesc();
+	   return review;
+   }
     
+    //RANDOM REVIEW
+   
+public Review getOneRandom() {
+//	ArrayList<Review> listOfReviews = (ArrayList<Review>) reviewRepository.findAll();  
+//	int len = listOfReviews.size();
+	Long total = reviewRepository.count();
+	int len = (int)(Math.random() * total);
+	Page<Review> reviewPage = reviewRepository.findAll(PageRequest.of(len, 1));
+	Review random = null;
+	if (reviewPage.hasContent()) {
+		random = reviewPage.getContent().get(0);
+	}
+	return random;
+}
 //    MEDIA SERVICES
     public Media getOneMedia(Long id) {
     	Optional<Media> optionalMedia = this.mediaRepository.findById(id);

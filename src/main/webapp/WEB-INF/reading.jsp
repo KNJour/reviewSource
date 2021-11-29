@@ -70,9 +70,26 @@
       <div class="banner" style="height:200px;"><p><c:out value="${review.content }"/></p></div>
       	<div class="d-flex p-1 justify-content-between">
       	 <p><c:out value="${review.rating }"/> Stars</p>
-      		<div>
-      		<button class="btn btn-success"></button>
-      		<button class="btn btn-danger"></button>
+      	       		<c:choose>
+	              <c:when test="${user.userName == 'KJournell'}">
+	 					<h6><a href="/delete/review/${review.id }" class="btn btn-outline-light btn-dark">delete</a></h6>         
+	            </c:when>
+	            	<c:otherwise>
+	            	</c:otherwise>	
+            </c:choose>
+                  <c:choose>
+	              <c:when test="${user.userName == review.user.userName}">
+	 					<h6><a href="/delete/review/${review.id }" class="btn btn-outline-light btn-dark">delete</a></h6>         
+	            </c:when>
+	            	<c:otherwise>
+	            	</c:otherwise>	
+            </c:choose>
+            
+      		<div>			  
+
+      		<button class="btn btn-success">Like</button>
+      		<button class="btn btn-danger">Dislike</button>
+      		<h6><a href="/delete/review/${review.id }" class="btn btn-outline-light btn-dark">delete</a></h6>         
       		
       		</div>
       	</div>

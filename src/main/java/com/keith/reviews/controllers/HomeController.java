@@ -52,10 +52,16 @@ public class HomeController {
     	if (session.getAttribute("user_id")  == null) {
     		return "redirect:/";
     	} else {
+    		Review newestReview = reviewService.getNewest();
+    		Review randomReview = reviewService.getOneRandom();
+        	System.out.println(newestReview.getTitle());
     		model.addAttribute("user", reviewService.findOneUser((Long) session.getAttribute("user_id")));
-    		System.out.println(reviewService.allReviews());
+    		System.out.println(randomReview.getTitle());
          	model.addAttribute("allReviews", reviewService.allReviews());
         	model.addAttribute("data", new Data());
+        	model.addAttribute("newest", newestReview);
+        	
+        	model.addAttribute("random", randomReview);
         	return "dashboard.jsp";
     	}
     }
@@ -383,7 +389,6 @@ public class HomeController {
     
     @GetMapping("/deleteUser")
     public String deleteUser(HttpSession session) {
-    	reviewService.
     	return "redirect:/";
     }
     

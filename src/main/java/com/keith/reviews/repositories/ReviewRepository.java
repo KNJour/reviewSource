@@ -1,8 +1,9 @@
 package com.keith.reviews.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,12 @@ import com.keith.reviews.models.Review;
 public interface ReviewRepository extends CrudRepository<Review, Long>{
 
 	Optional<Review> findById(Long id);
+	Review findTopByOrderByIdDesc();
+	
+	long count();
+	Page<Review> findAll(Pageable pageable);
+
+
+
 
 }
