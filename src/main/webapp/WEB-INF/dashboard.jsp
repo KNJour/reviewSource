@@ -26,74 +26,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<%-- <div class="navbar">
-	<div class="nav-container">
-		<div class="logo-container">
-			<h1 class="logo">review<span>Source</span></h1>
-		</div>
-		<div class="menu">
-				<ul class="menu-options">
-					<li class="menu-li active">Home</li>
-					<li class="menu-li">New Review</li>
-					<li class="menu-li">Your Reviews</li>
-					  <c:choose>
-              				<c:when test="${user.userName == 'KJournell'}">
-			              <li class="menu-li"> <a class="nav-link" href="/newGenre">Add Genre</a></li>
-			              <li class="menu-li"><a class="nav-link" href="/newMedia">Add Media</a></li>
-           					 </c:when>
-            					<c:otherwise>
-            					</c:otherwise>	
-            			</c:choose>
-					<li class="menu-li">Trending Reviews</li>
-					<li class="menu-li"> <form:form class="form-inline my-2 my-lg-1" action="/search/" method="POST" modelAttribute="data">
-	            												<form:input path="status" type="text" class="form-control colorizer" required="required" placeholder="Search"/>
-            													<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Review It</button>
-          													</form:form>
-          			</li>
-				</ul>
-		</div>
-			<div class="account">
-				<div class="toggle">
-					<i class="fas fa-moon toggle-icon"></i>
-					<i class="far fa-sun toggle-icon"></i>
-					<div class="toggle-ball"></div>
-				</div>
-				<i class="fas fa-user-cog fa-2x" ></i>
-				<div class="edit-account-container">
-					<span class="edit-account">Edit Account</span>
-				</div>
-			</div>
-		</div>
-</div>
-<div class="sidebar">
-	<i class="fas fa-film sidebar-icon"></i>
-	<i class="fas fa-book sidebar-icon"></i>
-	<i class="fas fa-tv sidebar-icon"></i>
-	<i class="fas fa-music sidebar-icon"></i>
-</div>
 
-<!-- CONTENT START -->
-<div class="container">
-	<div class="content-container">
-		<div class="featured-content" 
-		style="background: linear-gradient(to bottom, gold, #303030), url("images/gold.png")">
-			<h1 class="featured-review"></h1>
-		</div>
-	</div>
-
-</div> --%>
 <!-- NAV START -->
-<nav class="navbar navbar-expand-md navStyle ">
+<nav class="navbar navbar-expand-md navStyle">
         <a class="navbar-brand" href="/home">review<span class="source">Source</span></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-			<li>
-              <a class="nav-link" href="#">Home</a>
-            </li>
-                <li class="nav-item active">
+                <li class="nav-item goldMe">
               <a class="nav-link" href="/yourReviews">Your reviews</a>
             </li>
                 <li class="nav-item ">
@@ -115,10 +57,10 @@
             	<c:otherwise>
             	</c:otherwise>	
             </c:choose>
-              <li class="nav-item search-bar">
+              <li class="nav-item search-bar ml-3">
                <form:form class="form-inline my-2 my-lg-1" action="/search/" method="POST" modelAttribute="data">
-	            <form:input path="status" type="text" class="form-control colorizer" required="required" placeholder="Search"/>
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Review It</button>
+	            <form:input path="status" type="text" class="form-control" required="required" placeholder="Movie Search"/>
+            <button class="btn btn-light btn-outline-dark goldMe my-2 my-sm-0 ml-1" type="submit">Review It</button>
              </form:form>
             </li>
 	          </ul>
@@ -151,7 +93,7 @@
 						<a class="btn btn-light ml-3 mt-3" href="/reading/${newest.id }"/>Read Now</a>
 					</div>
 					<div class="col-4 featured-box">
-						<img src="${newest.image }" class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+						<img src="${newest.image }" class="img-fluid rounded mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
 
 					</div>
 					<div class="col-4 featured-box">

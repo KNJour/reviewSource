@@ -19,29 +19,28 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/custom.css" />
+        <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1><a class="navbar-brand" href="/">Everyone's a Critic</a></h1>
+<nav class="navbar navbar-expand-md navStyle">
+        <h1><a class="navbar-brand" href="/">reviewSource</a></h1>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Click Here To Login As Guest<span class="sr-only">(current)</span></a>
-            </li>
           </ul>
         </div>
         
-          <form class="form-inline my-2 my-lg-1" action="/login" method="post">
-            <label for="username"></label>
-                <input class="form-control mr-sm-2" type="text" name="email" placeholder="Email">
-            <label for="password"></label>
-                <input class="form-control mr-sm-2" type="text" name="pass" placeholder="Password">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
-          </form>
+        
       </nav>
-    <div class="container"> <!-- Beginning of Container -->
-        <div class="row">
+ 
+    <div class="container-fluid main-contain"> <!-- Beginning of Container -->
+	    <div class="row justify-content-center">
+	    	            <form:form action="/login" method="post" modelAttribute="newLogin">
+				               <form:hidden path="email"  value="Roughtakes@gmail.com" />
+				                <form:hidden path="password"  value="guestpassword" />
+				             	<input type="submit" value="Click Here To Login As Guest" class="guest-login-button"/>
+		              </form:form>
+		      </div>
+	        <div class="row">
 <!--         Registration Start -->
 		       <div class="col">
 	<form:form action="/register" method="post" modelAttribute="newUser" class="bg-light mt-5 m-2 p-3">
@@ -87,5 +86,14 @@
 		       </div>
        </div>
     </div> <!-- End of Container -->
+    	<div class="footer">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky">
+  		<a class="navbar-brand" href="#">A Project by Keith Journell</a>
+
+      <a href="https://github.com/knjour" target="_blank"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">GitHub</button></a>
+        <a href="#" target="_blank"><button class="btn btn-outline-primary my-2 my-sm-0 ml-3" type="submit">Portfolio</button></a>
+      
+</nav>
+	</div>
 </body>
 </html>

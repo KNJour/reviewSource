@@ -1,3 +1,84 @@
+
+/* Account page Style */
+.oops {
+	background-color: #191919;
+	color: #FFFDE4;
+	height: 100vh;
+	font-family: 'Sen', sans-serif;
+}
+
+/* New Review Page Style  */
+.new-review-body {
+	background-color: #191919;
+}
+input[type=text] {
+	background-color: #eeeeee;
+	
+}
+.isActive {
+	font-weight: bold;
+	pointer-events: none;
+  	cursor: default;
+ 	text-decoration: none;
+ 	
+}
+.formStyle {
+	font-family: 'Sen', sans-serif;
+	color: #FFFDE4;
+	background-color: #191919;
+	
+}
+.form-bio-sizer {
+	max-width: 700px;
+}
+.fit-me-bio {
+ max-width: 300px;
+}
+ .fit-me {
+	max-width: 300px;
+	margin: auto;
+	margin-top: 20px;
+} 
+
+.fit-me-text {
+	max-width: 650px;
+	margin: auto;
+	margin-top: 20px;
+}
+.makeGold {
+	color: gold;
+}
+.goldMe:hover {
+	color: gold;
+}
+
+
+/* INDEX PAGE STYLE
+ */
+ .guest-login-button {
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 15px;
+	background-color: #141414;
+	color: gold;
+	 border-style: solid;
+	 border-color: gold;
+	 transition: all 1s ease-in-out;
+	}
+	.guest-login-button:hover {
+	transform: scale(1.2);
+	}
+ .main-contain {
+ height: 95vh;
+background-image: url("images/movieposter.jpeg") repeat 0 0;
+background-color: #191919;
+ }
+/*  .test-contain {
+ height: 500px;
+ background: url("../images/movieposter.jpeg");
+ background-image: url("../images/movieposter.jpeg");
+ }
+  */
 .navStyle {
 background-color:#141414;
 top: 0;
