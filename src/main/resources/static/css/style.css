@@ -123,6 +123,11 @@ top:  0;
 background-image: url("images/movieposter.jpeg") repeat 0 0;
 background-color: #191919;
  }
+ .index-contain {
+height: 100vh;
+background-image: url("images/movieposter.jpeg") repeat 0 0;
+background-color: #191919;
+ }
 
 .latest-review-title {
 	font-weight: bold;
@@ -310,6 +315,7 @@ RESULTS  */
 
 .seeThrough {
 	opacity: 0.96;
+	 transition: all .5s ease-in-out;
 }	
 .seeThrough:hover {
 	opacity: 1;

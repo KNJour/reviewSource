@@ -32,7 +32,7 @@
         
       </nav>
  
-    <div class="container-fluid main-contain"style="background-image: url('images/movies.png');"> <!-- Beginning of Container -->
+    <div class="container-fluid index-contain"style="background-image: url('images/movies.png');"> <!-- Beginning of Container -->
 	    <div class="row justify-content-center">
 	    	            <form:form action="/login" method="post" modelAttribute="newLogin">
 				               <form:hidden path="email"  value="Roughtakes@gmail.com" />
