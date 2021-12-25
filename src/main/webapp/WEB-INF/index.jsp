@@ -23,7 +23,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navStyle">
-        <h1><a class="navbar-brand" href="/">reviewSource</a></h1>
+        <h1><a class="navbar-brand" href="/">review<span class="makeGold">Source</span></a></h1>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
           </ul>
@@ -32,7 +32,7 @@
         
       </nav>
  
-    <div class="container-fluid main-contain"> <!-- Beginning of Container -->
+    <div class="container-fluid main-contain"style="background-image: url('images/movies.png');"> <!-- Beginning of Container -->
 	    <div class="row justify-content-center">
 	    	            <form:form action="/login" method="post" modelAttribute="newLogin">
 				               <form:hidden path="email"  value="Roughtakes@gmail.com" />
@@ -42,11 +42,11 @@
 		      </div>
 	        <div class="row">
 <!--         Registration Start -->
-		       <div class="col">
-	<form:form action="/register" method="post" modelAttribute="newUser" class="bg-light mt-5 m-2 p-3">
-        <div class="form-group">
+		       <div class="col seeThrough">
+	<form:form action="/register" method="post" modelAttribute="newUser" class="bg-dark text-light mt-5 m-2 p-3 seeThrough roundMe">
+        <div class="form-group" id="test">
             <label>User Name:</label>
-            <form:input path="userName" class="form-control" />
+            <form:input path="userName" class="form-control" id="test" />
             <form:errors path="userName" class="text-danger" />
         </div>
         <div class="form-group">
@@ -70,7 +70,7 @@
 		       </div>
 		<!--        Login Start -->
 		       <div class="col">
-		           <form:form action="/login" method="post" modelAttribute="newLogin" class="bg-light mt-5 m-2 p-3">
+		      <form:form action="/login" method="post" modelAttribute="newLogin" class="bg-dark text-light mt-5 m-2 p-3 seeThrough roundMe">
         <div class="form-group">
             <label>Email:</label>
             <form:input path="email" class="form-control" />

@@ -98,17 +98,17 @@
 					<form:input path="email" type="text" class="form-control fit-me-bio" required="required" value="${user.email }"/>
 
 		        	 	</div>
-		        	 	<div class="cardbody text-dark p-2">
+		        	 	<div class="cardbody text-dark p-2 offWhite">
 				    <form:label path="bio"> A Brief Description of Yourself:   <span class="required">*</span> </form:label>
 					<form:errors path="bio" class="text-danger"/>
 					<form:textarea path="bio" rows="17" id="bio" class="form-control"/>
-					
-					 <input type="submit" class="btn btn-dark btn-outline-light m-2 p-2 goldMe" value="Update User Information"/>
+					<form:hidden path="id"  value="${user.id}" />
+					 <input type="submit" class="btn btn-dark btn-outline-light m-2 p-2 goldMe roundMe" value="Update User Information"/>
 				        	 	
 		        	</div>
         	</div><!--  Row 1 end -->
         	</form:form>
-        	<a href="delete/confirm">Delete User</a>
+        	<a href="delete/confirm" onclick="return confirm('Are you sure you want to delete your account? You will need to make a new one or use the guest account.')" >Delete User</a>
         </div>
     </div> <!-- End of Container -->
             	</c:otherwise>	

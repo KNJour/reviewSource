@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
 			<li>
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="/home">Home</a>
             </li>
                 <li class="nav-item">
               <a class="nav-link" href="/yourReviews">Your reviews</a>

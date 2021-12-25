@@ -28,7 +28,7 @@
 <body>
 
 <!-- NAV START -->
-<nav class="navbar navbar-expand-md navStyle">
+<nav class="navbar navbar-expand-md fixed-top navStyle py-2" id="topNav">
         <a class="navbar-brand" href="/home">review<span class="source">Source</span></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -69,34 +69,37 @@
 	            <li class="nav-item ">
                       <a class="nav-link mr-5" href="/accountSettings">Account Settings</a>
                 </li>
-                <li><a><i class="fas fa-sign-out-alt fa-2x lighten ml-3"></i> </a><a href="/logout">Log Out</a></li>
+                <li><a><i class="fas fa-sign-out-alt fa-2x lighten ml-3"></i> </a><a id="logout" href="/logout">Log Out</a></li>
             </ul>
 	         
 
         </div>
-        
+      <!--  <i class="fas fa-star"></i> <i class="fas fa-star-half"></i> -->
       </nav>
-      <!-- Beginning of Container -->
-        <%-- <h1> You've made it to the Home!! What a hero!</h1>
-        <h3>Welcome <c:out  value="${user.userName}"/></h3>
-        <h3>your email is <c:out  value="${user.email}"/></h3>
-        <h3>your id is <c:out  value="${user.id}"/></h3>
-        <a href="/logout">Log Out</a>
-        <div class="container-fluid">
-         --%>
-		<div class="container-fluid featured-content" style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');">
+      
+<!--       NAV END -->
+		<div class="container-fluid featured-content mt-2" style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');">
 			<div class="row ">
 					<div class="col-4 featured-box">
 						<h1 class="ml-3 latest-review-title">Latest Review</h1>
 						<h3 class="ml-3"><c:out value="${newest.title }"/></h3>
 						<h5 class="ml-3">By: ${newest.user.userName }</h5>
-						<a class="btn btn-light ml-3 mt-3" href="/reading/${newest.id }"/>Read Now</a>
+						<a class="btn btn-light ml-3 mt-3" href="/reading/${newest.id }">Read Now</a>
 					</div>
-					<div class="col-4 featured-box">
-						<img src="${newest.image }" class="img-fluid rounded mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+					<div class="col-2 d-md-none">
+					</div>
+					<div class="col-4 featured-box ">
+							<c:choose>
+								    <c:when test="${empty newest.image}">
+								 	   <img  src='<c:url value="/images/question.png"/>' class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+								    </c:when>
+								    <c:otherwise>
+								        <img src="${newest.image }" class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+								    </c:otherwise>	
+						       </c:choose>
 
 					</div>
-					<div class="col-4 featured-box">
+					<div class="col-4 featured-box d-sm-none d-none d-md-block">
 						<p class="mb-4">${newest.description }</p>
 					</div>
 			</div>
@@ -108,11 +111,21 @@
 			</div>
 				<div class=" row review-list-wrapper">
 						<div class="review-list">
+<!-- 					  checks if image is blank, if so inserts created placeholder image-->						
 						<c:forEach items="${allReviews}" var="review">
 							<div class="review-list-item">
-								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
-								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
-								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+									 <c:choose>
+							              <c:when test="${empty review.image}">
+										    <img class="review-list-item-img mt-1" src='<c:url value="/images/question.png"/> ' alt="${review.what }"/>
+										    <h4 class="review-list-item-what" id="alternate"><c:out value="${review.what}"/></h4>
+											<h6 class="review-list-item-title" id="alternate"><c:out value="${review.title}"/></h6>
+							            </c:when>
+							            	<c:otherwise>
+							           	 	<img class="review-list-item-img mt-1" src="${review.image }" alt="${review.what }"/>
+							           	 	<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+											<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+							            	</c:otherwise>	
+						            </c:choose>
 								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
 								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
 								</div>
@@ -129,11 +142,20 @@
 			</div>
 				<div class=" row review-list-wrapper">
 						<div class="review-list">
-						<c:forEach items="${allReviews}" var="review">
+						<c:forEach items="${fiftyNew}" var="review">
 							<div class="review-list-item">
-								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
-								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
-								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+									<c:choose>
+								              <c:when test="${empty review.image}">
+											    <img class="review-list-item-img" src='<c:url value="/images/question.png"/> ' alt="${review.what }"/>
+											    <h4 class="review-list-item-what" id="alternate"><c:out value="${review.what}"/></h4>
+												<h6 class="review-list-item-title" id="alternate"><c:out value="${review.title}"/></h6>
+								            </c:when>
+								            	<c:otherwise>
+								           	 	<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
+								           	 	<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+												<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+								            	</c:otherwise>	
+						            </c:choose>
 								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
 								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
 								</div>
@@ -151,9 +173,18 @@
 						<div class="review-list">
 						<c:forEach items="${allReviews}" var="review">
 							<div class="review-list-item">
-								<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
-								<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
-								<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+									 <c:choose>
+								              <c:when test="${empty review.image}">
+											    <img class="review-list-item-img" src='<c:url value="/images/question.png"/> ' alt="${review.what }"/>
+											    <h4 class="review-list-item-what" id="alternate"><c:out value="${review.what}"/></h4>
+												<h6 class="review-list-item-title" id="alternate"><c:out value="${review.title}"/></h6>
+								            </c:when>
+								            	<c:otherwise>
+								           	 	<img class="review-list-item-img" src="${review.image }" alt="${review.what }"/>
+								           	 	<h4 class="review-list-item-what"><c:out value="${review.what}"/></h4>
+												<h6 class="review-list-item-title"><c:out value="${review.title}"/></h6>
+								            	</c:otherwise>	
+						            </c:choose>
 								<p class="review-list-item-rating"><c:out value="${review.user.userName}"/> rated <c:out value="${review.rating}"/> stars</p>
 								<a href="/reading/${review.id }"><button class="review-list-item-button">Read Review</button></a>
 								</div>
@@ -169,19 +200,26 @@
 						<h1 class="ml-3 random-review-title">Random Review</h1>
 						<h3 class="ml-3"><c:out value="${random.title }"/></h3>
 						<h5 class="ml-3">By: ${random.user.userName }</h5>
-						<a class="btn btn-light ml-3 mt-3" href="/reading/${random.id }"/>Read Now</a>
+						<a class="btn btn-light ml-3 mt-3" href="/reading/${random.id }">Read Now</a>
 					</div>
-					<div class="col-4 featured-box">
-						<img src="${random.image }" class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+					<div class="col-4 featured-box ">
+							   <c:choose>
+								    <c:when test="${empty random.image}">
+								 	   <img  src='<c:url value="/images/question.png"/>' class="img-fluid mx-auto d-block featuredImg mt-5 border border-dark" alt="movie poster"/>
+								    </c:when>
+								    <c:otherwise>
+								        <img src="${random.image }" class="img-fluid mx-auto d-block featuredImg mt-5 mb-4 border border-dark" alt="movie poster"/>
+								    </c:otherwise>	
+						       </c:choose>
 
 					</div>
-					<div class="col-4 featured-box">
+					<div class="col-4 featured-box d-sm-none d-none d-md-block">
 						<p class="mb-4">${random.description }</p>
 					</div>
 			</div>
 		</div>
 	<div class="footer">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="bottomNav">
   		<a class="navbar-brand" href="#">A Project by Keith Journell</a>
 
       <a href="https://github.com/knjour" target="_blank"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">GitHub</button></a>
@@ -189,49 +227,7 @@
       
 </nav>
 	</div>
-	
-      <!--   <div class="carousel">
-        	<div class="carouselbox"> REVIEW DATA WILL COME HERE
-        		
-        	</div>
-        	<a class="switchLeft sliderButton"><</a>
-        	<a class="switchRight sliderButton">></a>
-        	
-        </div> -->
-        <%-- 	<div class="row">
-        	<c:forEach items="${allReviews}" var="review">
-		        	<div class="card m-3">
-		       <!--  	 	card header -->
-		        	 	<div class="card-header">
-				        	 	<div class="container text-dark">
-							        	 	<div class="row">
-									        	 	<div class="col-5">
-									        	 	        	 						<h3><c:out value="${review.what }"/></h3>
-									        	 	</div>
-									        	 	<div class="col-5">
-									        	 	        	 						<p>Reviewed by: <c:out value="${review.user.userName}"/></p>
-									        	 	</div>
-									        	 	<p>Description: <c:out value="${review.description}"/></p>
-									        	 	
-							        	 	</div>
-				        	 	</div>
-		        	 	</div>
-		        	 	<div class="cardbody text-dark">
-		        	 						<p>Rating: <c:out value="${review.rating}"/></p>
-		        	 						<div>
-		        	 						<h6><a href="/reading/${review.id }">Read Full Review</a></h6>
-		        	 							<h5>Image: </h5><img src="${review.image}" alt="image" style="width:100px;'height:300px"/>
-		        	 						</div>
-		        	 						<h6><a href="/delete/review/${review.id }" class="btn btn-outline-light btn-dark">delete</a></h6>
-		        	 						</div>
-		        	 						<div id="likes">
-		        	 							<a href="/like/review/${review.id}" class="btn btn-success">Like</a>
-		        	 							<a href="dislike/review/${review.id}" class="btn btn-danger">Dislike</a>
-		        	 						</div>
-		        	</div>
-        	</c:forEach>
-                      
-        	</div><!--  Row 1 end --> --%>
+
   
  	<script src="js/app.js"></script>
     </body>

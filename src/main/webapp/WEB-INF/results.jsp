@@ -13,81 +13,65 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title Here</title>
+<title>Search Results</title>
   <!-- Bootstrap -->
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/custom.css" />
+	  <link rel="stylesheet"
+	    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	    crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/be4fee3815.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1 class="star"><a class="navbar-brand" href="/home">Everyone's a Critic</a></h1>
+<nav class="navbar navbar-expand-md altNavStyle py-2">
+        <a class="navbar-brand" href="/home">review<span class="source">Source</span></a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+			<li>
+              <a class="nav-link" href="/home">Home</a>
             </li>
-                <li class="nav-item active">
+                <li class="nav-item">
               <a class="nav-link" href="/yourReviews">Your reviews</a>
             </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
               <a class="nav-link" href="#">Trending Reviews</a>
             </li>
-              <li class="nav-item active">
+              <li class="nav-item ">
               <a class="nav-link" href="/newReview">New Review</a>
-            </li>
-              <li class="nav-item active">
-              <a class="nav-link" href="/newGenre">Add Genre</a>
-            </li>
-              <li class="nav-item active">
-              <a class="nav-link" href="/newMedia">Add Media</a>
-            </li>
-              <li class="nav-item active">
-              <a class="nav-link" href="/">Favorites</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Account Settings</a>
-            </li>
-	                </ul>
-	            <form:form class="form-inline my-2 my-lg-1" action="/search/" method="POST" >
-	           <%--  <form:input path="status" type="text" class="form-control colorizer" required="required" placeholder="Search"/>
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Review It</button> --%>
-          </form:form>
-
+			</li>
+	          </ul>
+	         <ul class="nav navbar-nav navbar-right">
+	         	<li><a href="/accountSettings"><i class="fas fa-user-cog fa-2x lighten" ></i></a></li>
+	            <li class="nav-item ">
+                      <a class="nav-link mr-5" href="/accountSettings">Account Settings</a>
+                </li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt fa-2x lighten ml-3"></i> </a><a href="/logout" class="makeGold">Log Out</a></li>
+            </ul>
         </div>
-        
-      </nav>
+        </nav>
     <div class="container"> <!-- Beginning of Container -->
-        <h1>Results Page</h1>
+        <h1 class="random-review-title m-2">Search Results</h1>
 
-        <a href="/logout">Log Out</a>
         <div class="container-fluid">
-        	<div class="row">
+        	<div class="row d-flex align-items-center justify-content-center">
 <c:forEach items="${result}" var="result">
-		        	<div class="card m-3">
-		       <!--  	 	card header -->
-		        	 	<div class="card-header">
-				        	 	<div class="container text-dark">
-							        	 	<div class="row">
-									        	 	<div class="col-5">
-									        	 	        	 						<h3 style="color:red"><c:out value="${result.title }"/></h3>
-									        	 	        	 						<h3><c:out value="${result.resultType }"/></h3>
-									        	 	</div>
-									        	 	<div class="col-5">
-									        	 	        	 						<p>Year: <c:out value="${result.description}"/></p>
-									        	 	        	 						<p>ID: <c:out value="${result.id}"/></p>
-									        	 	        	 						<h5>Image: </h5><img src="${ result.image}" alt="image" style="width:100px;'height:300px"/>
-									        	 	        	 						<a href="/newReview/${result.id}/" class="btn btn-dark">Review It</a>
+				        	 	<div class="card text-light result-item p-2 m-1">							        	 	
+				        	 		<div class="row">
+									   <div class="col d-flex align-items-center justify-content-center">
+									        	 	<img src="${ result.image}" alt="image" class="result-image"/>
+									   </div>
+									        	 	<div class="col ">
+									        	 			<h3 class="pt-4"><c:out value="${result.title }"/></h3>
+									        	 	        	<a href="/newReview/${result.id}/" class="btn btn-dark m-2">Review It</a>
 									        	 	</div>
 									        	 	
 							        	 	</div>
 				        	 	</div>
-		        	 	</div>
-		        	
-		        	 						
-		        	</div>
         	</c:forEach>
         	</div><!--  Row 1 end -->
         </div>

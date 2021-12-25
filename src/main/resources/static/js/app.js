@@ -25,3 +25,4 @@ arrows.forEach((arrow, i) => {
 	})
 	console.log(reviewLists[i].querySelectorAll("img").length);
 })
+

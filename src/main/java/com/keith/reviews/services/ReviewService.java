@@ -96,6 +96,22 @@ public class ReviewService {
     	}
     }
     
+    //update a user 
+    
+    public void updateUser(User user) {
+    	Optional<User> checkUser = userRepository.findById(user.getId());
+    	if (checkUser.isPresent()) {
+        	User updatedUser = checkUser.get();
+        	updatedUser.setUserName(user.getUserName());
+        	updatedUser.setEmail(user.getEmail());
+        	updatedUser.setBio(user.getBio());
+        	userRepository.save(updatedUser);
+    	} else {
+    		
+    		return;
+    	}
+    	return;
+    }
     //Review & Genre
 //    public Review assignGenre(Long reviewId, Long genreId) {
 //        Genre thisGenre = findGenreById(genreId);
@@ -123,16 +139,26 @@ public class ReviewService {
     public void deleteReview(Long id) {
     	this.reviewRepository.deleteById(id);
     }
-   public Review getNewest() {
+   public Review getOneNewest() {
 	   Review review = reviewRepository.findTopByOrderByIdDesc();
 	   return review;
    }
-    
+   
+   //50 Most Recent 
+   
+   public List<Review> getFiftyNewest() {
+	   return (List<Review>) reviewRepository.findTop50ByOrderByCreatedAtDesc();
+   }
+   
+   //Get Most Liked Videos
+   public List<Review> getFiftyMostLiked() {
+	   return (List<Review>) reviewRepository.findTop50ByOrderByLikesDesc();
+   }
+   
     //RANDOM REVIEW
    
 public Review getOneRandom() {
-//	ArrayList<Review> listOfReviews = (ArrayList<Review>) reviewRepository.findAll();  
-//	int len = listOfReviews.size();
+
 	Long total = reviewRepository.count();
 	int len = (int)(Math.random() * total);
 	Page<Review> reviewPage = reviewRepository.findAll(PageRequest.of(len, 1));

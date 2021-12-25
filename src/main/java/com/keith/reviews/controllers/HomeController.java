@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.keith.reviews.models.Data;
 import com.keith.reviews.models.Genre;
@@ -52,7 +53,7 @@ public class HomeController {
     	if (session.getAttribute("user_id")  == null) {
     		return "redirect:/";
     	} else {
-    		Review newestReview = reviewService.getNewest();
+    		Review newestReview = reviewService.getOneNewest();
     		Review randomReview = reviewService.getOneRandom();
         	System.out.println(newestReview.getTitle());
     		model.addAttribute("user", reviewService.findOneUser((Long) session.getAttribute("user_id")));
@@ -60,8 +61,8 @@ public class HomeController {
          	model.addAttribute("allReviews", reviewService.allReviews());
         	model.addAttribute("data", new Data());
         	model.addAttribute("newest", newestReview);
-        	
         	model.addAttribute("random", randomReview);
+        	model.addAttribute("fiftyNew", reviewService.getFiftyNewest());
         	return "dashboard.jsp";
     	}
     }
@@ -197,13 +198,15 @@ public class HomeController {
     	SimpleDateFormat formatter = new SimpleDateFormat("MMMMM dd,  yyyy");
     	Review review = reviewService.getOneReview(id);
     	Date date = review.getCreatedAt();
-    	model.addAttribute("review", review);
+    	User reviewer= reviewService.findOneUser(review.getUser().getId());
+    	model.addAttribute("current", review);
     	model.addAttribute("date", formatter.format(date));
+    	model.addAttribute("reviewer", reviewer);
     	System.out.println("HEEEEEEEEEEEEEEERE" + model.getAttribute("review"));
     	
     	return "reading.jsp";
     }
-    //GENRE CONTROLS
+    //GENRE CONTROLS - Not currently part of the app
     @GetMapping("/newGenre")
     public String newGenre(HttpSession session, Model model) {
     	model.addAttribute("allGenres", reviewService.allGenres());
@@ -312,6 +315,7 @@ public class HomeController {
     	    	return "results.jsp";
     }
     
+    // Parsing response from IMDB api
     public static JSONArray parseMovieList(String responseBody) {
     		JSONObject jsonobject = new JSONObject(responseBody);
     		JSONArray jsonArray = jsonobject.getJSONArray("results");
@@ -372,12 +376,19 @@ public class HomeController {
     	return "account.jsp";
     }
     
-    @RequestMapping("/accountSettings/update")
+    @RequestMapping(value="/accountSettings/update", method=RequestMethod.POST)
     public String updateAccount(@Valid @ModelAttribute("user") User user, BindingResult result) {
     	if(result.hasErrors()) {
+    		System.out.println("username " + user.getUserName());
+    		System.out.println("email " + user.getEmail());
+    		System.out.println("bio " + user.getBio());
+    		
+    		System.out.println("SOMETHING WENT WRONG");
+    		
     		return "account.jsp";
     	} else {
     		reviewService.saveUser(user);
+    		System.out.println("SUCCESS");
     		return "redirect:/home";
     	}
     }
