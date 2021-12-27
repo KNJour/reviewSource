@@ -85,6 +85,11 @@ public class ReviewService {
     	}
     }
     
+    //find all users
+    
+    public List<User>findAllUsers() {
+    	return (List<User>) userRepository.findAll();
+    }
     //save a user
     public User saveUser(User user) {
     	Optional<User> checkUser = userRepository.findById(user.getId());
@@ -98,19 +103,16 @@ public class ReviewService {
     
     //update a user 
     
-    public void updateUser(User user) {
-    	Optional<User> checkUser = userRepository.findById(user.getId());
-    	if (checkUser.isPresent()) {
-        	User updatedUser = checkUser.get();
-        	updatedUser.setUserName(user.getUserName());
-        	updatedUser.setEmail(user.getEmail());
-        	updatedUser.setBio(user.getBio());
-        	userRepository.save(updatedUser);
-    	} else {
-    		
-    		return;
-    	}
-    	return;
+    public User updateUser(User user, String userName, String bio, String email) {
+    	System.out.println("STEP 1");
+    		User updatedUser = findOneUser(user.getId());
+    		updatedUser.setUserName(userName);
+    		updatedUser.setBio(bio);
+    		updatedUser.setEmail(email);
+        	updatedUser.setConfirm(user.getPassword());
+
+        	System.out.println("STEP 2");
+        	return userRepository.save(updatedUser);
     }
     //Review & Genre
 //    public Review assignGenre(Long reviewId, Long genreId) {
@@ -150,7 +152,7 @@ public class ReviewService {
 	   return (List<Review>) reviewRepository.findTop50ByOrderByCreatedAtDesc();
    }
    
-   //Get Most Liked Videos
+   //Get Most Liked reviews
    public List<Review> getFiftyMostLiked() {
 	   return (List<Review>) reviewRepository.findTop50ByOrderByLikesDesc();
    }

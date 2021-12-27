@@ -60,8 +60,9 @@
 <!-- 		READING COLUMN -->
 		<div class="col-8 order-last order-sm-first">
 			<div class="card bg-dark text-light m-2 p-2 ">
-				<div class="card-header">
+				<div class="card-header d-flex align-items-center justify-content-between">
 					<h2><c:out value="${current.what}" /> Review</h2>
+					<h6 class="ml-3"> created by <c:out value="${current.user.userName}" /> on <c:out value="${date}" /> </h6>
 				</div>
 				<div class="card-body">
 					<h3><c:out value="${current.title}"/></h3>
@@ -71,24 +72,27 @@
 					 </div>
 				<div class="reviewbottom d-flex align-items-center justify-content-between p-1">
 							 	<div class="bottomLeft">
-							 	<i class="fas fa-star makeGold"></i> <i class="fas fa-star-half makeGold"></i> 
+							 <!-- 	<i class="fas fa-star makeGold"></i> <i class="fas fa-star-half makeGold"></i>  -->
+							 	<h3><c:out value="${current.rating}"/> Stars</h3>
+							 	<h6>Likes: <c:out value="${likes}" /> Dislikes: <c:out value="${dislikes}" /></h6>
 							 	</div>
 							 	<div class="bottomRight">
 							 		<a href="/like/review/${current.id}" class="btn btn-success">Like</a>
 							 		<a href="/dislike/review/${current.id}" class="btn btn-danger">Dislike</a>
 							 	</div>
-				
 					</div>
 				
 				</div>
 			</div>
+
 		</div>
 <!-- 		REVIEWER INFO COLUMN -->
 		<div class="col-4">
-			<div class="card m-2 p-1 offWhite">
-			<h3 class="ml-3">About <c:out value="${current.user.userName}"/></h3>
-			<i class="fas fa-user fa-4x"></i>
-			<p><c:out value="${user.bio }"/></p>
+			<div class="card m-2 p-1 offWhite align-items-center">
+						<h3 class="ml-3">About <c:out value="${current.user.userName}"/></h3>
+						<i class="fas fa-user fa-4x"></i>
+						<br>
+			<p><c:out value="${current.user.bio }"/></p>
 			</div>
 			
 			<div class="card m-2 p-1 offWhite">

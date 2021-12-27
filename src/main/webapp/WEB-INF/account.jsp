@@ -86,7 +86,9 @@
         <h3 class="makeGold">Welcome <c:out  value="${user.userName}"/></h3>
         <h3 class="makeGold">Adjust Your account Settings</h3>
         <div class="container-fluid">
-        <form:form method="POST" action="/accountSettings/update" modelAttribute="user" class="mt-3">
+        <form:form method="POST" action="/accountSettings/update/${user.id}" modelAttribute="user" class="mt-3">
+        
+        <form:hidden path="id"  value="${user.id }"/>
 		        	<div class="card m-3 form-bio-sizer">
 		        	 	<div class="card-header">
 		        	 	<form:label path="userName"> UserName:   <span class="required">*</span> </form:label>
@@ -102,7 +104,6 @@
 				    <form:label path="bio"> A Brief Description of Yourself:   <span class="required">*</span> </form:label>
 					<form:errors path="bio" class="text-danger"/>
 					<form:textarea path="bio" rows="17" id="bio" class="form-control"/>
-					<form:hidden path="id"  value="${user.id}" />
 					 <input type="submit" class="btn btn-dark btn-outline-light m-2 p-2 goldMe roundMe" value="Update User Information"/>
 				        	 	
 		        	</div>

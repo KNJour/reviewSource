@@ -72,7 +72,7 @@
 					 </div>
 				<div class="reviewbottom d-flex align-items-center justify-content-between p-1">
 							 	<div class="bottomLeft">
-							 	<i class="fas fa-star makeGold"></i> <i class="fas fa-star-half makeGold"></i> 
+							 	<h3><c:out value="${review.rating}"/> Stars</h3>
 							 	</div>
 							 	<div class="bottomRight">
 							 	 <a href="/delete/review/${review.id}" onclick="return confirm('Are you sure you want to delete your review?')" class="btn btn-danger text-light btn-outline-dark">Delete</a>

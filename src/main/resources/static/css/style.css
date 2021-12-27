@@ -284,6 +284,7 @@ background-color: #191919;
 /* 
 RESULTS  */
 
+
 .result-item {
 	background-color: #141414;
 	color: #FFFDE4;
@@ -309,7 +310,7 @@ RESULTS  */
  color: #191919;
 }
 
-.roundMe {
+.roundMe { transition: all 1s ease-in-out;
 	border-radius: 10px;
 }
 

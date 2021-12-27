@@ -202,7 +202,12 @@ public class HomeController {
     	model.addAttribute("current", review);
     	model.addAttribute("date", formatter.format(date));
     	model.addAttribute("reviewer", reviewer);
-    	System.out.println("HEEEEEEEEEEEEEEERE" + model.getAttribute("review"));
+    	int likes = review.getLikes().size();
+    	int dislikes = review.getDislikes().size();
+    	model.addAttribute("likes", likes);
+    	model.addAttribute("dislikes", dislikes);
+    	System.out.print(likes);
+//    	System.out.println("HEEEEEEEEEEEEEEERE " + reviewService.getLikeCount(id));
     	
     	return "reading.jsp";
     }
@@ -302,8 +307,6 @@ public class HomeController {
 			    			
 		    			model.addAttribute("result", movies);
 			    			
-			    			
-			    			
 			    		} catch (IOException e) {
 			    			// TODO Auto-generated catch block
 			    			e.printStackTrace();
@@ -370,25 +373,27 @@ public class HomeController {
     
     //ACCOUNT SETTINGS
     @GetMapping("/accountSettings")
-    public String account(HttpSession session, Model model) {
-    	User user = reviewService.findOneUser((Long) session.getAttribute("user_id"));
-    	model.addAttribute("user", user);
+    public String account(@ModelAttribute User user, HttpSession session, Model model) {
+    	model.addAttribute("user", reviewService.findOneUser((Long) session.getAttribute("user_id")));
     	return "account.jsp";
     }
     
-    @RequestMapping(value="/accountSettings/update", method=RequestMethod.POST)
-    public String updateAccount(@Valid @ModelAttribute("user") User user, BindingResult result) {
+    @RequestMapping(value="/accountSettings/update/{id}", method=RequestMethod.POST)
+    public String updateAccount(@Valid @PathVariable("id") Long id, @ModelAttribute("user") User user, BindingResult result) {
+    	User oldUser = reviewService.findOneUser(id);
+    	user.setReviews(oldUser.getReviews());
+    	user.setLikes(oldUser.getLikes());
+    	user.setDislikes(oldUser.getDislikes());
+    	user.setPassword(oldUser.getPassword());
+    	
     	if(result.hasErrors()) {
-    		System.out.println("username " + user.getUserName());
-    		System.out.println("email " + user.getEmail());
-    		System.out.println("bio " + user.getBio());
-    		
-    		System.out.println("SOMETHING WENT WRONG");
+
+    		System.out.println("SOMETHING WENT WRONG" + result.getAllErrors());
     		
     		return "account.jsp";
     	} else {
-    		reviewService.saveUser(user);
     		System.out.println("SUCCESS");
+    		reviewService.updateUser(user, user.getUserName(), user.getBio(), user.getEmail());
     		return "redirect:/home";
     	}
     }

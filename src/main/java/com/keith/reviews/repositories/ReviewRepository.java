@@ -21,7 +21,5 @@ public interface ReviewRepository extends JpaRepository <Review, Long>{
 	public List<Review> findTop50ByOrderByCreatedAtDesc();
 	
 	public List<Review> findTop50ByOrderByLikesDesc();
-	}
-	
-
+}
 

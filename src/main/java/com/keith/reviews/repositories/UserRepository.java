@@ -10,4 +10,5 @@ import com.keith.reviews.models.User;
 public interface UserRepository  extends CrudRepository<User, Long>{
 	Optional<User> findByEmail(String email);
 	
+	Long countByLikes(Long id);
 }
