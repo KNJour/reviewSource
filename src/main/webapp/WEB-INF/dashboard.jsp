@@ -28,13 +28,13 @@
 <body>
 
 <!-- NAV START -->
-<nav class="navbar navbar-expand-md fixed-top navStyle py-2" id="topNav">
-        <a class="navbar-brand" href="/home">review<span class="source">Source</span></a>
+<nav class="navbar navbar-expand-lg fixed-top navStyle py-2" id="topNav">
+        <a class="navbar-brand makeGold" href="/home">review<span class="source">Source</span></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mr-auto align-items-center">
                 <li class="nav-item goldMe">
               <a class="nav-link" href="/yourReviews">Your reviews</a>
             </li>
@@ -45,7 +45,7 @@
               <a class="nav-link" href="/newReview">New Review</a>
 			</li>
 			  <c:choose>
-              <c:when test="${user.userName == 'KJournell'}">
+              <c:when test="${user.email == 'KNJournell@gmail.com'}">
 			              <li class="nav-item ">
 			              <a class="nav-link" href="/newGenre">Add Genre</a>
 			            </li>
@@ -64,21 +64,26 @@
              </form:form>
             </li>
 	          </ul>
-	         <ul class="nav navbar-nav navbar-right">
-	         	<li><i class="fas fa-user-cog fa-2x lighten" ></i></li>
+	          <ul class="nav navbar-nav navbar-right align-items-center">
+	         	<li><a href="/accountSettings"><i class="fas fa-user-cog fa-2x lighten  d-sm-none d-none d-lg-block d-md-none" ></i></a></li>
 	            <li class="nav-item ">
-                      <a class="nav-link mr-5" href="/accountSettings">Account Settings</a>
+                      <a class="nav-link" href="/accountSettings">Account Settings</a>
                 </li>
-                <li><a><i class="fas fa-sign-out-alt fa-2x lighten ml-3"></i> </a><a id="logout" href="/logout">Log Out</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt fa-2x lighten ml-3  d-sm-none d-none d-lg-block d-md-none"></i> </a></li>
+            		 <li class="nav-item ">
+                      <a class="nav-link" href="/logout">Log Out</a>
+                </li>
             </ul>
-	         
-
         </div>
       <!--  <i class="fas fa-star"></i> <i class="fas fa-star-half"></i> -->
       </nav>
       
 <!--       NAV END -->
-		<div class="container-fluid featured-content mt-2" style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');">
+<!-- Alert Strip for messages - eventually maybe
+ -->				<div class="row alertStrip">
+					
+				</div>
+		<div class="container-fluid featured-content " style="background:  linear-gradient(to bottom, gold, #181818), url('images/gold.png');">
 			<div class="row ">
 					<div class="col-4 featured-box">
 						<h1 class="ml-3 latest-review-title">Latest Review</h1>
@@ -216,19 +221,25 @@
 					<div class="col-4 featured-box d-sm-none d-none d-md-block">
 						<p class="mb-4">${random.description }</p>
 					</div>
+				</div>
 			</div>
-		</div>
+			<!-- Alert Strip for messages - eventually maybe -->
+				<div class="row alertStrip">
+					
+				</div>
+		
 	<div class="footer">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="bottomNav">
+	<nav class="navbar navbar-light bg-light" id="bottomNav">
   		<a class="navbar-brand" href="#">A Project by Keith Journell</a>
-
-      <a href="https://github.com/knjour" target="_blank"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">GitHub</button></a>
-        <a href="#" target="_blank"><button class="btn btn-outline-primary my-2 my-sm-0 ml-3" type="submit">Portfolio</button></a>
+      <a href="https://github.com/KNJour/reviewSource" target="_blank"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">GitHub</button></a>
+        <a href="http://keithjournell.com" target="_blank"><button class="btn btn-outline-primary my-2 my-sm-0 ml-3" type="submit">Portfolio</button></a>
       
 </nav>
 	</div>
 
   
  	<script src="js/app.js"></script>
+ 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     </body>
 </html>

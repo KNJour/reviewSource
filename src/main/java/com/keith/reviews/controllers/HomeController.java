@@ -194,7 +194,7 @@ public class HomeController {
     
     // SHOW ONE REVIEW
     @RequestMapping(value="/reading/{id}")
-    public String showReview(@PathVariable("id") Long id, Model model) {
+    public String showReview(@PathVariable("id") Long id, HttpSession session, Model model) {
     	SimpleDateFormat formatter = new SimpleDateFormat("MMMMM dd,  yyyy");
     	Review review = reviewService.getOneReview(id);
     	Date date = review.getCreatedAt();
@@ -206,8 +206,8 @@ public class HomeController {
     	int dislikes = review.getDislikes().size();
     	model.addAttribute("likes", likes);
     	model.addAttribute("dislikes", dislikes);
+    	session.setAttribute("review_id", review.getId());
     	System.out.print(likes);
-//    	System.out.println("HEEEEEEEEEEEEEEERE " + reviewService.getLikeCount(id));
     	
     	return "reading.jsp";
     }
@@ -356,7 +356,7 @@ public class HomeController {
     	reviewService.saveUser(user);
     	
     	
-    	return "redirect:/home";
+    	return "redirect:/reading/" + session.getAttribute("review_id");
     }
     
     @RequestMapping(value="/dislike/review/{id}")
@@ -368,7 +368,7 @@ public class HomeController {
     		System.out.println(review);
     	user.getDislikes().add(review);
     	reviewService.saveUser(user);
-    	return "redirect:/home";
+    	return "redirect:/reading/" + session.getAttribute("review_id");
     }
     
     //ACCOUNT SETTINGS

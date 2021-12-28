@@ -31,7 +31,7 @@
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mr-auto align-items-center">
 			<li>
               <a class="nav-link" href="/home">Home</a>
             </li>
@@ -45,12 +45,15 @@
               <a class="nav-link" href="/newReview">New Review</a>
 			</li>
 	          </ul>
-	         <ul class="nav navbar-nav navbar-right">
-	         	<li><a href="/accountSettings"><i class="fas fa-user-cog fa-2x lighten" ></i></a></li>
+	         <ul class="nav navbar-nav navbar-right align-items-center">
+	         	<li><a href="/accountSettings"><i class="fas fa-user-cog fa-2x lighten  d-sm-none d-none d-md-block" ></i></a></li>
 	            <li class="nav-item ">
-                      <a class="nav-link mr-5" href="/accountSettings">Account Settings</a>
+                      <a class="nav-link" href="/accountSettings">Account Settings</a>
                 </li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt fa-2x lighten ml-3"></i> </a><a href="/logout" class="makeGold">Log Out</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt fa-2x lighten ml-3  d-sm-none d-none d-md-block"></i> </a></li>
+            		 <li class="nav-item ">
+                      <a class="nav-link" href="/logout">Log Out</a>
+                </li>
             </ul>
         </div>
         </nav>
@@ -76,4 +79,7 @@
         	</div><!--  Row 1 end -->
         </div>
     </div> <!-- End of Container -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
 </html>

@@ -22,7 +22,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1><a class="navbar-brand" href="/">Everyone's a Critic</a></h1>
+        <h1><a class="navbar-brand" href="/">reviewSource</a></h1>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
 		            <li class="nav-item active">
