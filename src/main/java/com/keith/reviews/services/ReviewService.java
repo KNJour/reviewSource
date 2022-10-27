@@ -1,6 +1,5 @@
 package com.keith.reviews.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class ReviewService {
 	@Autowired
 	private GenreRepository genreRepository;
 //Registration ***
-	
+
     public User register(User newUser, BindingResult result) {
     	//checks to see if email already exists in database
         if(userRepository.findByEmail(newUser.getEmail()).isPresent()) {
@@ -51,7 +50,7 @@ public class ReviewService {
             return userRepository.save(newUser);
         }
     }
-    
+
   //Login***
     public User login(LoginUser newLogin, BindingResult result) {
         if(result.hasErrors()) {
@@ -84,9 +83,9 @@ public class ReviewService {
     		return null;
     	}
     }
-    
+
     //find all users
-    
+
     public List<User>findAllUsers() {
     	return (List<User>) userRepository.findAll();
     }
@@ -96,13 +95,13 @@ public class ReviewService {
     	if (checkUser.isPresent()) {
     		return userRepository.save(user);
     	} else {
-    		
+
     		return null;
     	}
     }
-    
-    //update a user 
-    
+
+    //update a user
+
     public User updateUser(User user, String userName, String bio, String email) {
     	System.out.println("STEP 1");
     		User updatedUser = findOneUser(user.getId());
@@ -129,15 +128,15 @@ public class ReviewService {
     		return null;
     	}
     }
-    
+
     public List<Review>allReviews() {
-    	return (List<Review>) reviewRepository.findAll();
+    	return reviewRepository.findAll();
     }
-    
+
     public Review createReview(Review review) {
 		return  reviewRepository.save(review);
 		}
-    
+
     public void deleteReview(Long id) {
     	this.reviewRepository.deleteById(id);
     }
@@ -145,20 +144,20 @@ public class ReviewService {
 	   Review review = reviewRepository.findTopByOrderByIdDesc();
 	   return review;
    }
-   
-   //50 Most Recent 
-   
+
+   //50 Most Recent
+
    public List<Review> getFiftyNewest() {
-	   return (List<Review>) reviewRepository.findTop50ByOrderByCreatedAtDesc();
+	   return reviewRepository.findTop50ByOrderByCreatedAtDesc();
    }
-   
+
    //Get Most Liked reviews
    public List<Review> getFiftyMostLiked() {
-	   return (List<Review>) reviewRepository.findTop50ByOrderByLikesDesc();
+	   return reviewRepository.findTop50ByOrderByLikesDesc();
    }
-   
+
     //RANDOM REVIEW
-   
+
 public Review getOneRandom() {
 
 	Long total = reviewRepository.count();
@@ -179,15 +178,15 @@ public Review getOneRandom() {
     		return null;
     	}
     }
-    
+
     public List<Media>allMedia() {
     	return (List<Media>) mediaRepository.findAll();
     }
-    
+
     public Media createMedia(Media media) {
 		return  mediaRepository.save(media);
 		}
-    
+
     public void deleteMedia(Long id) {
     	this.mediaRepository.deleteById(id);
     }
@@ -203,11 +202,11 @@ public Review getOneRandom() {
     public List<Genre>allGenres() {
     	return (List<Genre>) genreRepository.findAll();
 	}
-    
+
     public Genre createGenre(Genre genre) {
 		return  genreRepository.save(genre);
 		}
-    
+
     public void deleteGenre(Long id) {
     	this.genreRepository.deleteById(id);
     }

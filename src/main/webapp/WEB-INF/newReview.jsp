@@ -126,7 +126,7 @@
            			 <div class="form-group fit-me-text">
                       		<form:label path="image" class="iconic user">Poster Image Link: (optional)</form:label>
 							<form:errors path="image" class="text-danger"/>
-							<form:input path="image" type="text" class="form-control" value="${poster.image}"/>
+							<form:input path="image" type="text" class="form-control" value="${movie.image}"/>
 					 </div>
 							<input type="submit" class="btn btn-light btn-outline-dark m-3 goldMe" value="★ ★ ★ ★ ★ Submit Review"/>
 				</form:form>

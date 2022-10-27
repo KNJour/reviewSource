@@ -7,7 +7,7 @@ public class Movie_Result {
 	private String image;
 	private String title;
 	private String description;
-	
+
 	public Movie_Result() {}
 	public Movie_Result(String id, String resultType, String image, String title, String description) {
 		super();
@@ -16,7 +16,9 @@ public class Movie_Result {
 		this.image = image;
 		this.title = title;
 		this.description = description;
+		
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -47,8 +49,8 @@ public class Movie_Result {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
+
 
 
 

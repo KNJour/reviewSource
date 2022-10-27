@@ -27,16 +27,16 @@ public class Media {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String type;
-	
+
 	   @Column(updatable=false)
 	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date createdAt;
 	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date updatedAt;
-	    
+
 		@PrePersist
 		protected void onCreate(){
 		    this.createdAt = new Date();
@@ -45,11 +45,11 @@ public class Media {
 		protected void onUpdate(){
 		    this.updatedAt = new Date();
 		}
-		
+
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name="review_id")
 		private Review review;
-		
+
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(
 				name = "media_genre",
@@ -59,7 +59,7 @@ public class Media {
 		private List<Genre>genres;
 
 		public Media() {}
-		
+
 		public Media(Long id, @NotNull String type, Review review, List<Genre> genres) {
 			super();
 			this.id = id;
@@ -103,6 +103,6 @@ public class Media {
 		public void setGenres(List<Genre> genres) {
 			this.genres = genres;
 		}
-	
-		
+
+
 }

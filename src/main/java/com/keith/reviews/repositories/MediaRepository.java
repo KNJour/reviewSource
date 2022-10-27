@@ -9,6 +9,7 @@ import com.keith.reviews.models.Media;
 @Repository
 public interface MediaRepository extends CrudRepository<Media, Long> {
 
+	@Override
 	Optional<Media> findById(Long id);
 
 }

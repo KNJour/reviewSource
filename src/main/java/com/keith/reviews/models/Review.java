@@ -28,34 +28,34 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull(message="what you're reviewing is required!")
 	@Size(min=1, max=100, message="review must be between 1 and 100 characters")
 	private String what;
-	
+
 	@NotNull(message="Review title is required!")
 	@Size(min=1, max=100, message="review must be between 1 and 100 characters")
 	private String title;
-	
+
 	@Size(max=3000, message="review description  can not be more than 3000 characters")
 	@Column(length = 1000)
 	private String description;
-	
+
 	@NotNull(message="Review content is required!")
 	@Size(min=5, max=3000, message="review must be between 5 and 3000 characters")
 	private String content;
-	
+
 	@NotNull(message="Rating is required")
-	private double rating; 
+	private double rating;
 	@Column(length = 1000)
 	private String image;
-	
+
 	   @Column(updatable=false)
 	    @DateTimeFormat(pattern="yyyy-MM-dd")
 		private Date createdAt;
 	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date updatedAt;
-	    
+
 		@PrePersist
 		protected void onCreate(){
 		    this.createdAt = new Date();
@@ -64,15 +64,15 @@ public class Review {
 		protected void onUpdate(){
 		    this.updatedAt = new Date();
 		}
-		
+
 		@ManyToOne(fetch=FetchType.LAZY)
 		@JoinColumn(name="user_id")
 		private User user;
-		
+
 		@ManyToOne(fetch=FetchType.LAZY)
 		@JoinColumn(name="media_id")
 		private Media media;
-		
+
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(
 				name= "review_genre",
@@ -80,7 +80,7 @@ public class Review {
 				inverseJoinColumns = @JoinColumn(name = "genre_id")
 				)
 		private List<Genre>genre;
-		
+
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(
 				name = "user_likes",
@@ -88,7 +88,7 @@ public class Review {
 				inverseJoinColumns = @JoinColumn(name = "user_id")
 				)
 		private List<User>likes;
-		
+
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(
 				name = "user_dislikes",
@@ -96,9 +96,9 @@ public class Review {
 				inverseJoinColumns = @JoinColumn(name = "user_id")
 				)
 		private List<User>dislikes;
-		
+
 		public Review() {}
-		
+
 
 		public Review(Long id,
 				@NotNull(message = "what you're reviewing is required!") @Size(min = 1, max = 100, message = "review must be between 1 and 100 characters") String what,
@@ -204,9 +204,9 @@ public class Review {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		
-		
 
-		
-		
+
+
+
+
 }

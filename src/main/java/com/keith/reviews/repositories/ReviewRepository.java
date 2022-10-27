@@ -12,14 +12,17 @@ import com.keith.reviews.models.Review;
 @Repository
 public interface ReviewRepository extends JpaRepository <Review, Long>{
 
+	@Override
 	Optional<Review> findById(Long id);
 	Review findTopByOrderByIdDesc();
-	
+
+	@Override
 	long count();
+	@Override
 	Page<Review> findAll(Pageable pageable);
-	
+
 	public List<Review> findTop50ByOrderByCreatedAtDesc();
-	
+
 	public List<Review> findTop50ByOrderByLikesDesc();
 }
 

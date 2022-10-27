@@ -60,9 +60,31 @@
     <div class="container"> <!-- Beginning of Container -->
         <h1 class="random-review-title m-2">Search Results</h1>
 
-        <div class="container-fluid">
+        <div class="container-fluid">        	<div class="row d-flex align-items-center justify-content-center">
+			<c:forEach items="${result}" var="result">
+						  <form:form method='POST' action="/searchselected" modelAttribute="Movie_Result" class="mt-5 justify-content-center formStyle" >
+     			 		<div class="card text-light result-item p-2 m-1">							        	 	
+				        	 		<div class="row">
+									   <div class="col d-flex align-items-center justify-content-center">
+									        	 	<img src="${result.image}" alt="image" class="result-image"/>
+									   </div>
+									        	 	<div class="col ">
+									        	 			<h3 class="pt-4"><c:out value="${result.title }"/></h3>
+									        	 	        	<input type="submit" class="btn btn-light btn-outline-dark m-3 goldMe" value="Review It"/>
+									        	 	</div>
+									        	 	
+							        	 	</div>
+				        	 	</div>
+				        	 	<form:hidden path="title"  value="${result.title}" />
+				        	 	<form:hidden path="image"  value="${result.image}" />
+				        	 	<form:hidden path="description"  value="${result.description}" />
+				</form:form>
+        	</c:forEach>
+        	</div><!--  Row 1 end -->
+        	
         	<div class="row d-flex align-items-center justify-content-center">
 <c:forEach items="${result}" var="result">
+						
 				        	 	<div class="card text-light result-item p-2 m-1">							        	 	
 				        	 		<div class="row">
 									   <div class="col d-flex align-items-center justify-content-center">
@@ -70,7 +92,7 @@
 									   </div>
 									        	 	<div class="col ">
 									        	 			<h3 class="pt-4"><c:out value="${result.title }"/></h3>
-									        	 	        	<a href="/newReview/${result.id}/" class="btn btn-dark m-2">Review It</a>
+									        	 	        	<a href="/newReview/${result.id}" class="btn btn-dark m-2">Review It</a>
 									        	 	</div>
 									        	 	
 							        	 	</div>
